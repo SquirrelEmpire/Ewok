@@ -24,7 +24,7 @@ public class Game extends EwokGame{
 	}
 	
 	@Override
-	public void update(Ewok ew) {
+	public void update(Ewok ew, float dt) {
 		if(EwokInput.isKey(KeyEvent.VK_D)){
 			test += 5;
 		}

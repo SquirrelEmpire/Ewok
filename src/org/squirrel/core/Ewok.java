@@ -57,8 +57,11 @@ public class Ewok implements Runnable {
 			
 			while(unprocessedTime >= frameCap){
 				//Update
-				game.update(this);
+				game.update(this,  (float) frameCap);
 				ewokIn.update();
+				
+				
+				//dgame.repaint();
 
 
 				unprocessedTime -= frameCap;
@@ -77,7 +80,7 @@ public class Ewok implements Runnable {
 				//draw
 				//game.paint(window.getGamePanel().getGraphics());
 				game.repaint();
-
+				
 				frames++;
 			}else{
 				try {
