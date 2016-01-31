@@ -2,6 +2,16 @@ package org.squirrel.core;
 
 public class Ewok implements Runnable {
 	
+	 //  ______                _      ______                _              
+	//  |  ____|              | |    |  ____|              (_)             
+	//  | |__ __      __ ___  | | __ | |__    _ __    __ _  _  _ __    ___ 
+	 // |  __|\ \ /\ / // _ \ | |/ / |  __|  | '_ \  / _` || || '_ \  / _ \
+	//  | |____\ V  V /| (_) ||   <  | |____ | | | || (_| || || | | ||  __/
+	//  |______|\_/\_/  \___/ |_|\_\ |______||_| |_| \__, ||_||_| |_| \___|
+	//                                                __/ |                
+	 //                                              |___/                 
+	// Original Developer: DemSquirrel 
+	
 	private boolean running = false;
 	private Thread tread;
 	private String ewokVersion = "0.1";
