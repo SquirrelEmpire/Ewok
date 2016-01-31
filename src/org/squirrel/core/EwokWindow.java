@@ -25,6 +25,11 @@ public class EwokWindow {
 	public JPanel getGamePanel() {
 		return gamePanel;
 	}
-
 	
+	public void update(){
+		frame.paintComponents(gamePanel.getGraphics());
+	}
+	public JFrame getFrame() {
+		return frame;
+	}
 }

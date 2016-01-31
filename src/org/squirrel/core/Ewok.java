@@ -14,7 +14,13 @@ public class Ewok implements Runnable {
 	private int width = 0;
 	private int height = 0;
 	private String title = "Ewok Engine "+ewokVersion;
+	private int frames = 0;
+
 	
+	public int getFrames() {
+		return frames;
+	}
+
 	public Ewok(EwokGame game){
 		this.game = game;
 	}
@@ -43,7 +49,6 @@ public class Ewok implements Runnable {
 		double passedTime = 0;
 		double unprocessedTime = 0;
 		double frameTime = 0;
-		int frames = 0;
 		while(running){
 			
 			boolean render = false;
@@ -70,16 +75,13 @@ public class Ewok implements Runnable {
 				if(frameTime >= 1){
 					frameTime = 0;
 					System.out.println("FPS: "+frames);
-					if(isShowDebugInfo()){
-						window.getGamePanel().getGraphics().drawString("FPS: "+frames, 20, 20);
-					}
 					frames = 0;
 				}
 			}
 			if(render){
 				//draw
 				//game.paint(window.getGamePanel().getGraphics());
-				game.repaint();
+				window.update();
 				
 				frames++;
 			}else{

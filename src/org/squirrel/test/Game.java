@@ -3,6 +3,7 @@ package org.squirrel.test;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
@@ -42,9 +43,11 @@ public class Game extends EwokGame{
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawString("Fisk", test, 200);
-		g2d.drawRect(test, test2,50, 50);
+		g2d.drawString("Fisk", 200, 200);
+		Rectangle rc = new Rectangle(test,test2, 50, 50);
 		g2d.setColor(Color.red);
+		g2d.fill(rc);
+		g2d.draw(rc);
 		g.drawString("Hej", 300, 200);
 	}
 
