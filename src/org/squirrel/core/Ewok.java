@@ -11,10 +11,12 @@ public class Ewok implements Runnable {
 	private EwokGame game;
 	private EwokWindow window;
 	private EwokInput ewokIn;
+	private int width = 0;
+	private int height = 0;
+	private String title = "Ewok Engine "+ewokVersion;
 	
-	public Ewok(EwokGame game, EwokWindow window){
+	public Ewok(EwokGame game){
 		this.game = game;
-		this.window = window;
 	}
 	
 	public synchronized void start(){
@@ -22,7 +24,8 @@ public class Ewok implements Runnable {
 			return;
 		
 		//Init game comp
-		ewokIn = new EwokInput(this);
+		ewokIn = new EwokInput(game);
+		window = new EwokWindow(width, height, title, game);
 		
 		running = true;
 		tread = new Thread(this);
@@ -55,18 +58,26 @@ public class Ewok implements Runnable {
 			while(unprocessedTime >= frameCap){
 				//Update
 				game.update(this);
+				ewokIn.update();
+
+
 				unprocessedTime -= frameCap;
 				render = true;
 				
 				if(frameTime >= 1){
 					frameTime = 0;
 					System.out.println("FPS: "+frames);
+					if(isShowDebugInfo()){
+						window.getGamePanel().getGraphics().drawString("FPS: "+frames, 20, 20);
+					}
 					frames = 0;
 				}
 			}
 			if(render){
 				//draw
-				window.getGamePanel().repaint();
+				//game.paint(window.getGamePanel().getGraphics());
+				game.repaint();
+
 				frames++;
 			}else{
 				try {
@@ -97,5 +108,27 @@ public class Ewok implements Runnable {
 		return window;
 	}
 
+	public int getWidth() {
+		return width;
+	}
 
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 }

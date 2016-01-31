@@ -1,17 +1,20 @@
 package org.squirrel.image;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Image{
+public class AssetLoader{
 	
-	public static BufferedImage Image(String path){
-		BufferedImage img = null;
+	private BufferedImage img;
+	public AssetLoader(){
+		
+	}
+	
+	public BufferedImage loadImage(String path){
 		try {
-		    img = ImageIO.read(new File(path));
+			img = ImageIO.read(getClass().getResource(path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

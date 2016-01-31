@@ -15,13 +15,11 @@ public class EwokInput implements KeyListener, MouseListener, MouseInputListener
 	
 	private static boolean[] buttons = new boolean[5];
 	private static boolean[] buttonsLast = new boolean[5];
-	private Ewok ew;
+	private EwokGame ew;
 	
-	public EwokInput(Ewok ew){
+	public EwokInput(EwokGame ew){
 		this.ew = ew;
-		ew.getWindow().getGamePanel().addKeyListener(this);
-		ew.getWindow().getGamePanel().addMouseListener(this);
-		ew.getWindow().getGamePanel().addMouseMotionListener(this);
+		ew.addKeyListener(this);
 	}
 	
 	public void update(){
