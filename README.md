@@ -1,4 +1,4 @@
-# Ewok
+# Ewok ![Ewok <3](https://github.com/SquirrelEmpire/Ewok/blob/master/Ewok%20face.png)
 A java game engine for creating games with java 2d
 
 WIP
