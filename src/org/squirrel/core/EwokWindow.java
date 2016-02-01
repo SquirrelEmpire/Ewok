@@ -1,4 +1,6 @@
 package org.squirrel.core;
+import java.awt.image.BufferStrategy;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -6,6 +8,7 @@ public class EwokWindow {
 	
 	private JFrame frame;
 	private JPanel gamePanel;
+	private BufferStrategy bs;
 	
 	public EwokWindow(int width, int height, String title, JPanel game){
 		this.gamePanel = game;
@@ -19,7 +22,9 @@ public class EwokWindow {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-	
+		
+		frame.createBufferStrategy(3);
+		bs = frame.getBufferStrategy();
 		
 	}
 	public JPanel getGamePanel() {
@@ -27,7 +32,8 @@ public class EwokWindow {
 	}
 	
 	public void update(){
-		frame.paintComponents(gamePanel.getGraphics());
+		frame.repaint();
+		//bs.show();
 	}
 	public JFrame getFrame() {
 		return frame;

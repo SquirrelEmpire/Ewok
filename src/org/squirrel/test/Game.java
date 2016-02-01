@@ -7,21 +7,29 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
+import org.squirrel.assets.AssetLoader;
 import org.squirrel.core.Ewok;
 import org.squirrel.core.EwokGame;
 import org.squirrel.core.EwokInput;
 import org.squirrel.core.EwokWindow;
-import org.squirrel.image.AssetLoader;
 
 public class Game extends EwokGame{
 	
 	private static final long serialVersionUID = -511946696911819575L;
-	BufferedImage bob;
+	public BufferedImage bob;
+	public BufferedImage testSprite;
+	public Clip fart;
 	public int test = 200;
 	public int test2 = 200;
-	
+	public Ewok ew;
 	public Game(){
 		setFocusable(true);
+		bob = AssetLoader.loadImage("/Ewok face.png");
+		fart = AssetLoader.loadSound("/fart.wav");
+		testSprite = AssetLoader.getSprite(bob, 15, 42, 86, 82);
 	}
 	
 	@Override
@@ -38,17 +46,24 @@ public class Game extends EwokGame{
 		if(EwokInput.isKey(KeyEvent.VK_S)){
 			test2 += 5;
 		}
+		if(EwokInput.isKey(KeyEvent.VK_F)){
+			fart.start();
+
+		}
+		if(EwokInput.isKey(KeyEvent.VK_ESCAPE)){
+			System.exit(1);
+		}
 	}
 	
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawString("Fisk", 200, 200);
-		Rectangle rc = new Rectangle(test,test2, 50, 50);
-		g2d.setColor(Color.red);
-		g2d.fill(rc);
-		g2d.draw(rc);
-		g.drawString("Hej", 300, 200);
+		g2d.drawImage(bob, 0, 0, null);
+		g2d.drawImage(testSprite, test, test2, null);
+		g2d.setColor(Color.black);
+		g2d.drawString("Hello World!", 200, 200);
+		Rectangle s = new Rectangle(200, 300, 50, 50);
+		g2d.fill(s);
 	}
 
 	
