@@ -6,5 +6,7 @@ WIP
 Progress:
 Gameloop and Window.. Done
 Basic g2d shape and text rendering.. Done 
+Image and Spritesheet loading and drawing.. Done
+Gameobject handling.. In progress
 
 
