@@ -7,6 +7,7 @@ public class GameHandlere {
 	
 	public static LinkedList<GameObject> gameObjects = new LinkedList<GameObject>();
 	public GameObject tempObject;
+	public ObjectId tempId;
 	
 	public GameHandlere(){
 		
@@ -32,5 +33,13 @@ public class GameHandlere {
 	
 	public void removeGameObject(GameObject object){
 		gameObjects.remove(object);
+	}
+	
+	public ObjectId getId(){
+		for(int i = 0; i < gameObjects.size(); i++){
+			tempObject = gameObjects.get(i);
+			tempId = tempObject.getId();
+		}
+		return tempId;
 	}
 }

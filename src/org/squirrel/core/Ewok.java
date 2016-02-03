@@ -75,10 +75,6 @@ public class Ewok implements Runnable {
 				game.update(this,  (float) frameCap);
 				ewokIn.update();
 				
-				
-				//dgame.repaint();
-
-
 				unprocessedTime -= frameCap;
 				render = true;
 				
@@ -102,7 +98,6 @@ public class Ewok implements Runnable {
 				}
 			}}
 }
-
 	public boolean isShowDebugInfo() {
 		return showDebugInfo;
 	}

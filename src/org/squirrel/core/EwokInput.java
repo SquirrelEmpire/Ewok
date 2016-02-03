@@ -20,6 +20,7 @@ public class EwokInput implements KeyListener, MouseListener, MouseInputListener
 	public EwokInput(EwokGame ew){
 		this.ew = ew;
 		ew.addKeyListener(this);
+		ew.addMouseListener(this);
 	}
 	
 	public void update(){

@@ -7,18 +7,21 @@ import java.awt.image.BufferedImage;
 import org.squirrel.assets.AssetLoader;
 import org.squirrel.core.EwokInput;
 import org.squirrel.objects.GameObject;
+import org.squirrel.objects.ObjectId;
 
 public class Player extends GameObject{
 	
-	public BufferedImage playerImg = AssetLoader.loadImage("/Ewok face.png");
+	public static BufferedImage playerImg = AssetLoader.loadImage("/Ewok face.png");
 	
 	public Player(int xPos, int yPos) {
-		super(xPos, yPos);
+		super(xPos, yPos, id);
+		this.id = ObjectId.Player;
 	}
 
 	@Override
 	public void draw(Graphics2D g2d) {
 		g2d.drawImage(playerImg, getxPos(), getyPos(), null);
+		
 	}
 
 	@Override
@@ -37,5 +40,4 @@ public class Player extends GameObject{
 			setyPos(yPos + 5);
 		}
 	}
-
 }

@@ -15,7 +15,10 @@ import org.squirrel.core.Ewok;
 import org.squirrel.core.EwokGame;
 import org.squirrel.core.EwokInput;
 import org.squirrel.core.EwokWindow;
+import org.squirrel.objects.Camera;
 import org.squirrel.objects.GameHandlere;
+import org.squirrel.objects.GameObject;
+import org.squirrel.objects.ObjectId;
 
 public class Game extends EwokGame{
 	
@@ -25,13 +28,15 @@ public class Game extends EwokGame{
 	public int test2 = 200;
 	public Ewok ew;
 	public GameHandlere handler;
+	public Camera cam1;
 	
 	public Game(){
 		setFocusable(true);
 		//Init Game Comp
 		handler = new GameHandlere();
-		handler.addGameObject(new Player(200, 200));
 		fart = AssetLoader.loadSound("/fart.wav");
+		handler.addGameObject(new Player(0,0));
+		cam1 = new Camera(0, 0);
 	}
 	
 	@Override
@@ -45,18 +50,33 @@ public class Game extends EwokGame{
 			System.exit(1);
 		}
 		handler.update();
+		
+		//Camera
+		for(int i = 0; i < handler.gameObjects.size(); i++){
+			// If the object has the id of a player then update the camera
+			
+			if(handler.gameObjects.get(i).getId() == ObjectId.Player){
+				cam1.update(handler.gameObjects.get(i), this, 2);
+				System.out.println(handler.gameObjects.get(i).getxPos()+","+handler.gameObjects.get(i).getyPos());
+			}
+		}
 	}
 	
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
-		
-		handler.draw(g2d);
+		// camera
+		///////////////////////////////////////
+		g2d.translate(cam1.getX(), cam1.getY());
 		
 		g2d.setColor(Color.black);
 		g2d.drawString("Hello World!", 200, 200);
 		Rectangle s = new Rectangle(200, 300, 50, 50);
 		g2d.fill(s);
+		handler.draw(g2d);
+		
+		g2d.translate(-cam1.getX(), -cam1.getY());
+		////////////////////////////////////////
 	}
 
 	
