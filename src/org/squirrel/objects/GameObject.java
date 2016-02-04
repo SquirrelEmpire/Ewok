@@ -3,6 +3,8 @@ package org.squirrel.objects;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import org.squirrel.enginecomponent.EngineComponent;
+
 public abstract class GameObject {
 	
 	public static int xPos = 0,yPos = 0; 

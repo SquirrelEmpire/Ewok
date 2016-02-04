@@ -57,7 +57,6 @@ public class Game extends EwokGame{
 			
 			if(handler.gameObjects.get(i).getId() == ObjectId.Player){
 				cam1.update(handler.gameObjects.get(i), this, 2);
-				System.out.println(handler.gameObjects.get(i).getxPos()+","+handler.gameObjects.get(i).getyPos());
 			}
 		}
 	}
@@ -65,6 +64,7 @@ public class Game extends EwokGame{
 	@Override
 	public void paint(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
+		
 		// camera
 		///////////////////////////////////////
 		g2d.translate(cam1.getX(), cam1.getY());
