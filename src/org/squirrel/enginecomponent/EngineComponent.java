@@ -1,12 +1,10 @@
 package org.squirrel.enginecomponent;
 
-public abstract class EngineComponent {
+public class EngineComponent {
 	
 	private String componentName = "";
 	public EngineComponent(){
 	}
-	
-	public abstract void update();
 
 	public String getComponentName() {
 		return componentName;

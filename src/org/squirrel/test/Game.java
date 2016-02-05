@@ -15,7 +15,7 @@ import org.squirrel.core.Ewok;
 import org.squirrel.core.EwokGame;
 import org.squirrel.core.EwokInput;
 import org.squirrel.core.EwokWindow;
-import org.squirrel.objects.Camera;
+import org.squirrel.enginecomponent.components.Camera;
 import org.squirrel.objects.GameHandlere;
 import org.squirrel.objects.GameObject;
 import org.squirrel.objects.ObjectId;
@@ -56,7 +56,7 @@ public class Game extends EwokGame{
 			// If the object has the id of a player then update the camera
 			
 			if(handler.gameObjects.get(i).getId() == ObjectId.Player){
-				cam1.update(handler.gameObjects.get(i), this, 2);
+				cam1.updateCamera(handler.gameObjects.get(i), this, 2);
 			}
 		}
 	}

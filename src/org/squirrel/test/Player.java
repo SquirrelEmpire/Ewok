@@ -29,6 +29,6 @@ public class Player extends GameObject{
 
 	@Override
 	public void update() {
-		move.update();
+		move.movePlayer(this, 5);
 	}
 }

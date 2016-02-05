@@ -17,12 +17,7 @@ public class WASD extends EngineComponent{
 		this.speed = speed;
 	}
 	
-	@Override
-	public void update() {
-		movePlayer(player, speed);
-	}
-	
-	private void movePlayer(GameObject player, int speed){
+	public void movePlayer(GameObject player, int speed){
 		if(EwokInput.isKey(KeyEvent.VK_D)){
 			player.setxPos(player.xPos + speed); 
 		}
