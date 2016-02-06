@@ -6,9 +6,11 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import javax.swing.JOptionPane;
 
 import org.squirrel.assets.AssetLoader;
 import org.squirrel.core.Ewok;
@@ -19,6 +21,7 @@ import org.squirrel.enginecomponent.components.Camera;
 import org.squirrel.objects.GameHandlere;
 import org.squirrel.objects.GameObject;
 import org.squirrel.objects.ObjectId;
+import org.squirrel.utils.TextUtils;
 
 public class Game extends EwokGame{
 	
@@ -29,6 +32,8 @@ public class Game extends EwokGame{
 	public Ewok ew;
 	public GameHandlere handler;
 	public Camera cam1;
+	public String score;
+	public String name;
 	
 	public Game(){
 		setFocusable(true);
@@ -37,6 +42,32 @@ public class Game extends EwokGame{
 		fart = AssetLoader.loadSound("/fart.wav");
 		handler.addGameObject(new Player(0,0));
 		cam1 = new Camera(0, 0);
+		
+		name = JOptionPane.showInputDialog("What your name", null);
+		
+		try {
+			TextUtils.writeProp("score.properties", "score", "10");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			TextUtils.writeProp("score.properties", "userName", name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			String text = TextUtils.readProp("score.properties", "userName");
+			System.out.println("Name:"+text);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		try {
+			score = TextUtils.readProp("score.properties", "score");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -77,6 +108,7 @@ public class Game extends EwokGame{
 		
 		g2d.translate(-cam1.getX(), -cam1.getY());
 		////////////////////////////////////////
+		g2d.drawString("PlayerScore: "+score, 20, 20);
 	}
 
 	
