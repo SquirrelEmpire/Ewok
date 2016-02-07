@@ -2,8 +2,7 @@
 A java game engine for creating games with java 2d
 
 Vision:
-
-To make it easy to make games in Java
+To make it easy to make games in Java <br>
 
 Progress:
 Gameloop and Window.. Done
