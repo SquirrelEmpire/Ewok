@@ -1,5 +1,7 @@
 package org.squirrel.test;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -19,15 +21,17 @@ public class Player extends GameObject{
 	
 	public Player(int xPos, int yPos) {
 		super(xPos, yPos, id);
-		this.id = ObjectId.Player;
+		this.id = ObjectId.PlayerObject;
 		move = new WASD(this, 5);
-		col = new Collider(this, 100, 100);
+		col = new Collider(this, 133, 148);
 	}
 
 	@Override
 	public void draw(Graphics2D g2d) {
 		g2d.drawImage(playerImg, getxPos(), getyPos(), null);
 		g2d.draw(col.getBounds());
+		g2d.setColor(Color.GREEN);
+		g2d.drawString(Game.text, getxPos(), getyPos());
 		
 	}
 

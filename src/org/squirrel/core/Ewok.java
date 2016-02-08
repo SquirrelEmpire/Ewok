@@ -1,5 +1,7 @@
 package org.squirrel.core;
 
+import org.squirrel.utils.Debugger;
+
 public class Ewok implements Runnable {
 	
 	 //  ______                _      ______                _              
@@ -15,9 +17,7 @@ public class Ewok implements Runnable {
 	private boolean running = false;
 	private Thread tread;
 	private String ewokVersion = "0.2.1 Feb 2. 2016";
-	private boolean showDebugInfo = false;
 	private double frameCap = 1.0 / 60.0;
-	private String debugTag = "[DEBUG] ";
 	private EwokGame game;
 	private EwokWindow window;
 	private EwokInput ewokIn;
@@ -50,8 +50,8 @@ public class Ewok implements Runnable {
 	
 	public void run() {
 		running = true;
-		if(isShowDebugInfo()){
-			System.out.println(debugTag+"Gameloop started");
+		if(Debugger.isEnabled()){
+			Debugger.printMsg("Gameloop started");
 		}
 		
 		double firstTime = 0;
@@ -80,7 +80,9 @@ public class Ewok implements Runnable {
 				
 				if(frameTime >= 1){
 					frameTime = 0;
-					System.out.println("FPS: "+frames);
+					if(Debugger.isEnabled()){
+						Debugger.printMsg("FPS: "+frames);
+					}
 					frames = 0;
 				}
 			}
@@ -98,14 +100,6 @@ public class Ewok implements Runnable {
 				}
 			}}
 }
-	public boolean isShowDebugInfo() {
-		return showDebugInfo;
-	}
-
-	public void setShowDebugInfo(boolean showDebugInfo) {
-		this.showDebugInfo = showDebugInfo;
-	}
-
 	public boolean isRunning() {
 		return running;
 	}

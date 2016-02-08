@@ -1,8 +1,8 @@
 package org.squirrel.objects;
 
 public enum ObjectId {
-	Player,
-	Object,
-	Mob,
-	Block,
+	PlayerObject,
+	StaticObject,
+	NPCObject,
+	TileObject,
 }

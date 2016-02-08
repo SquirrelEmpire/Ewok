@@ -21,6 +21,7 @@ import org.squirrel.enginecomponent.components.Camera;
 import org.squirrel.objects.GameHandlere;
 import org.squirrel.objects.GameObject;
 import org.squirrel.objects.ObjectId;
+import org.squirrel.utils.Debugger;
 import org.squirrel.utils.TextUtils;
 
 public class Game extends EwokGame{
@@ -34,6 +35,7 @@ public class Game extends EwokGame{
 	public Camera cam1;
 	public String score;
 	public String name;
+	public static String text;
 	
 	public Game(){
 		setFocusable(true);
@@ -58,7 +60,7 @@ public class Game extends EwokGame{
 		}
 		
 		try {
-			String text = TextUtils.readProp("score.properties", "userName");
+			text = TextUtils.readProp("score.properties", "userName");
 			System.out.println("Name:"+text);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -86,7 +88,7 @@ public class Game extends EwokGame{
 		for(int i = 0; i < handler.gameObjects.size(); i++){
 			// If the object has the id of a player then update the camera
 			
-			if(handler.gameObjects.get(i).getId() == ObjectId.Player){
+			if(handler.gameObjects.get(i).getId() == ObjectId.PlayerObject){
 				cam1.updateCamera(handler.gameObjects.get(i), this, 2);
 			}
 		}
@@ -100,6 +102,7 @@ public class Game extends EwokGame{
 		///////////////////////////////////////
 		g2d.translate(cam1.getX(), cam1.getY());
 		
+
 		g2d.setColor(Color.black);
 		g2d.drawString("Hello World!", 200, 200);
 		Rectangle s = new Rectangle(200, 300, 50, 50);
@@ -108,6 +111,7 @@ public class Game extends EwokGame{
 		
 		g2d.translate(-cam1.getX(), -cam1.getY());
 		////////////////////////////////////////
+		g2d.setColor(Color.black);
 		g2d.drawString("PlayerScore: "+score, 20, 20);
 	}
 
@@ -116,7 +120,7 @@ public class Game extends EwokGame{
 		Ewok ew = new Ewok(new Game());
 		ew.setWidth(800);
 		ew.setHeight(600);
-		ew.setShowDebugInfo(true);
+		Debugger.enableDebugger();
 		ew.start();
 	}
 }

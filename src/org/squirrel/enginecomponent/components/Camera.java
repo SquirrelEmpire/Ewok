@@ -15,7 +15,6 @@ public class Camera extends EngineComponent{
 		this.x = x;
 		this.y = y;
 		this.setComponentName("Camera");
-
 	}
 	
 	
