@@ -5,24 +5,20 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JOptionPane;
-
 import org.squirrel.assets.AssetLoader;
 import org.squirrel.core.Ewok;
 import org.squirrel.core.EwokGame;
 import org.squirrel.core.EwokInput;
-import org.squirrel.core.EwokWindow;
 import org.squirrel.enginecomponent.components.Camera;
 import org.squirrel.objects.GameHandlere;
-import org.squirrel.objects.GameObject;
 import org.squirrel.objects.ObjectId;
 import org.squirrel.utils.Debugger;
 import org.squirrel.utils.TextUtils;
+import org.json.*;
+
 
 public class Game extends EwokGame{
 	
@@ -36,6 +32,8 @@ public class Game extends EwokGame{
 	public String score;
 	public String name;
 	public static String text;
+	public JSONObject moneyFile;
+	public int money = 0;
 	
 	public Game(){
 		setFocusable(true);
@@ -45,10 +43,12 @@ public class Game extends EwokGame{
 		handler.addGameObject(new Player(0,0));
 		cam1 = new Camera(0, 0);
 		
+		moneyFile = new JSONObject("/test.json");
+		
 		name = JOptionPane.showInputDialog("What your name", null);
 		
 		try {
-			TextUtils.writeProp("score.properties", "score", "10");
+			TextUtils.writeProp("score.properties", "score", "11");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +70,7 @@ public class Game extends EwokGame{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	@Override
@@ -113,6 +114,7 @@ public class Game extends EwokGame{
 		////////////////////////////////////////
 		g2d.setColor(Color.black);
 		g2d.drawString("PlayerScore: "+score, 20, 20);
+		g2d.drawString("Money: "+money+"$", 20, 40);
 	}
 
 	

@@ -16,7 +16,7 @@ public class Ewok implements Runnable {
 	
 	private boolean running = false;
 	private Thread tread;
-	private String ewokVersion = "0.2.1 Feb 2. 2016";
+	private String ewokVersion = "0.2.2 Feb 25. 2016";
 	private double frameCap = 1.0 / 60.0;
 	private EwokGame game;
 	private EwokWindow window;
